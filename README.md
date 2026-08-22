@@ -18,16 +18,6 @@ Postgres + pgvector   PostgreSQL + SQL
        + filing citations
 ```
 
-## Why this is more than a chatbot
-- Hybrid structured + unstructured evidence
-- SEC 10-K/10-Q ingestion
-- SEC Company Facts normalization
-- Embeddings and cosine retrieval with pgvector
-- Query routing across RAG, structured SQL, or both
-- Evidence-constrained generation
-- Retrieval/citation/latency evaluation harness
-- Dockerized PostgreSQL
-
 ## Quick start
 
 ```bash
