@@ -248,47 +248,6 @@ Why did revenue change and what did management say drove it?
 
 the application selects the **hybrid route**, combining structured XBRL financial information with relevant passages from the company's SEC filings.
 
-## Design Decisions
-
-### Why combine RAG and structured data?
-
-RAG is useful for understanding narrative information such as strategy, risks, and management commentary.
-
-Exact financial values are already available as structured XBRL facts. Using those values directly reduces the risk of numerical hallucination and makes calculations deterministic.
-
-### Why PostgreSQL + pgvector?
-
-The application needs both relational financial data and vector embeddings.
-
-pgvector allows both to live in PostgreSQL, avoiding the operational complexity of maintaining a separate vector database for a relatively small research corpus.
-
-### Why rerank retrieved passages?
-
-Embedding similarity provides strong semantic recall, but the closest vector is not always the most directly relevant passage.
-
-The application retrieves a broader candidate set and applies a lightweight lexical reranker to improve the final ordering.
-
-### Why deterministic routing instead of multiple AI agents?
-
-The application's decision space is small and well-defined.
-
-A deterministic router provides predictable behavior, lower cost, easier debugging, and an architecture that can be clearly explained. More autonomous planning would only be justified if future versions required complex multi-step research.
-
-## Current Scope
-
-The project is designed as a focused financial research system rather than a general-purpose autonomous financial agent.
-
-Current capabilities include:
-
-- Multi-company SEC research
-- Narrative filing analysis
-- Structured financial analysis
-- Hybrid qualitative + quantitative questions
-- Source-grounded responses
-- Financial trend calculations
-
-Potential production-scale extensions include approximate vector indexing, stronger XBRL concept normalization, background ingestion jobs, and more advanced reranking.
-
 ## Project Structure
 
 ```text
